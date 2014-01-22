@@ -1,4 +1,4 @@
-package com.example.demo2;
+package com.example.demo3;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -30,6 +32,19 @@ public class MainActivity extends Activity {
         ButtonListener Lisener = new ButtonListener();
         btnSearch.setOnClickListener(Lisener);
         btnOpenActivity.setOnClickListener(Lisener);
+        
+        Button btnList = new Button(this);
+        btnList.setText(R.string.btn_list);
+        btnList.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 
+        										 LayoutParams.WRAP_CONTENT));
+        
+        LinearLayout linearLayout = (LinearLayout)findViewById(R.id.mainActivity);
+        
+        LinearLayout inputControls = (LinearLayout) View.inflate(this, R.layout.input_controls_content, null);
+        
+        
+        linearLayout.addView(btnList);
+        linearLayout.addView(inputControls);
     }
 
 
