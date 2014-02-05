@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Tarea1</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Tarea 1</string>
+    <string name="action_settings">Opciones</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_detalle_tienda">Detalle de Tienda</string>
+    
+    
+    <string name="detalle_tienda_nombre">Nombre de la Tienda</string>
+    <string name="detalle_tienda_direccion">Ciudad, ciudad</string>
+    <string name="detalle_tienda_horario">Horario:</string>
+    <string name="detalle_tienda_horario_detalle">De Lunes a Viernes!!!!</string>
+    <string name="detalle_tienda_llamar">LLAMAR</string>
 
+     <string name="detalle_tienda_email_detalle">correo@tienda.com</string>
+    <string name="detalle_tienda_email">Email:</string>
+    <string name="detalle_tienda_imagen_label">Imagen:</string>
+    <string name="imagen_tienda_desc">Imagen de la tienda</string>
+    
+    <string name="detalle_tienda_comentarios_label">Comentarios</string>
+    <string name="detalle_tienda_agregar_btn">+</string>
+    
 </resources>

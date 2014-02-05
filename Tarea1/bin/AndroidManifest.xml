@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.sp1.tarea1.DetalleTienda"
+            android:label="@string/title_activity_detalle_tienda"
+            android:parentActivityName="com.sp1.tarea1.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.angel.firstapp.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
