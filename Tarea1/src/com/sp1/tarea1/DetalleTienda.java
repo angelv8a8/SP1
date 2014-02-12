@@ -1,6 +1,5 @@
 package com.sp1.tarea1;
 
-import android.R.string;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +9,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.text.Spannable;
+import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -79,27 +80,8 @@ public class DetalleTienda extends Activity {
 		txtHorario.setText(tienda.getHorario());
 		
 		TextView txtEmail = (TextView)findViewById(R.id.tiendaEmail);
+		Linkify.addLinks(txtEmail, Linkify.EMAIL_ADDRESSES);
 		txtEmail.setText(tienda.getEmail());
-		
-		txtEmail.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				
-					Intent i = new Intent(Intent.ACTION_SEND);
-					i.setType("message/rfc822");
-					i.putExtra(Intent.EXTRA_EMAIL  , new String[]{Email});
-					i.putExtra(Intent.EXTRA_SUBJECT, "Contactenos");
-					i.putExtra(Intent.EXTRA_TEXT   , "Escriba su correo");
-					try {
-					    startActivity(Intent.createChooser(i, "Send mail..."));
-					} catch (android.content.ActivityNotFoundException ex) {
-					    Toast.makeText(getApplicationContext(), "No hay clientes de correo instsalados.", Toast.LENGTH_SHORT).show();
-					}
-			
-			}
-		});
-		
 		LinearLayout ll = (LinearLayout)findViewById(R.id.lista_comentarios);
 		
 		for (String comentario : tienda.getComentarios()) {

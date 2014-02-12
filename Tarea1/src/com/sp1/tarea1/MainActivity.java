@@ -42,6 +42,7 @@ public class MainActivity extends  ListActivity{
 		List<Tienda> tiendasLista = dataAccess.getTinedas();
 		
 		for (Tienda laTienda : tiendasLista) {
+			
 			HashMap<String,String> aux= new HashMap<String,String>();
 			
 			aux.put(NOMBRE, laTienda.getNombre());
