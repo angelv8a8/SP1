@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.Tab;
+import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -19,9 +22,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity{
+public class MainActivity extends ActionBarActivity {
+
 	
 	String pais = "";
 	@Override
@@ -67,12 +72,37 @@ public class MainActivity extends ActionBarActivity{
 		});
 		
 		registerForContextMenu(listaV);
-
-		/*ActionBar ab = 
-		ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		*/
 		
 		
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		
+		TabListener tl = new TabListener() {
+			
+			@Override
+			public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onTabSelected(Tab arg0, FragmentTransaction arg1) {
+				Toast.makeText(getApplicationContext(), arg0.getText().toString(), Toast.LENGTH_SHORT).show();
+				
+			}
+			
+			@Override
+			public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		
+		for(int i = 0; i < 10; i ++)
+		{
+			actionBar.addTab(
+					actionBar.newTab().setText("Tab" + i).setTabListener(tl)); 
+		}
 	}
 
 	@Override
