@@ -7,19 +7,17 @@ import java.util.List;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.sp1.businessObjects.Tienda;
 import com.sp1.data.dataAccess;
 
-public class MainActivity extends  ListActivity{
+public class MainActivity extends  ListActivity implements OnItemClickListener{
 
 	
 	private final String NOMBRE = "nombre";
@@ -31,6 +29,7 @@ public class MainActivity extends  ListActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 		
 		SimpleAdapter adapter = new SimpleAdapter(this, tiendas, 
 				android.R.layout.simple_expandable_list_item_2 , 
@@ -53,11 +52,13 @@ public class MainActivity extends  ListActivity{
 			
 			
 		}
+		
 		SimpleAdapter adapter2 = (SimpleAdapter)getListAdapter();
 		adapter2.notifyDataSetChanged();
 		
 		ListView lv = (ListView)findViewById(android.R.id.list);
 		lv.setOnItemClickListener(listListener);
+		
 		
 		
 	}
@@ -88,6 +89,12 @@ public class MainActivity extends  ListActivity{
 			
 		}
 	};
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 	

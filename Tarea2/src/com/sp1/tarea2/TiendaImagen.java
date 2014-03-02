@@ -80,7 +80,7 @@ public class TiendaImagen extends Activity {
 				iv.setImageDrawable(drawable);
 				
 				
-				Uri uri = Uri.parse("http://www.compulab.com.pa/files/6eef2b0f03c57b9f7d80bbffae2d68c0.jpg");
+				Uri uri = Uri.parse("android.resource://com.sp1.tarea2/drawable/" + resID);
 				share.putExtra(Intent.EXTRA_STREAM, uri);
 		        
 				share.setType("image/jpeg");
@@ -99,7 +99,6 @@ public class TiendaImagen extends Activity {
 				item.setIcon(R.drawable.ic_action_favorite);
 			}
 			break;
-			
 		}
 		return super.onOptionsItemSelected(item);
 	}
