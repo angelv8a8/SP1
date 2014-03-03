@@ -9,6 +9,6 @@
     <string name="title_fragment_list">Listado</string>
     <string name="title_fragment_banderas">Banderas</string>
     
-       <string name="msg_share">Comparto contigo la informacion de  %1$s %2$s</string>
+    <string name="msg_share">Comparto contigo la informacion de  %1$s %2$s</string>
 
 </resources>

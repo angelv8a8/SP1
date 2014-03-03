@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">S2 Demo8</string>
+    <string name="action_help">Ayuda</string>
+    <string name="action_share">Compartir</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_country_detail">CountryDetailActivity</string>
+    <string name="title_fragment_list">Listado</string>
+    <string name="title_fragment_banderas">Banderas</string>
+    
+    <string name="msg_share">Comparto contigo la informacion de  %1$s %2$s</string>
+
+    <string name="msg_about">Demo creado por AngelOchoa</string>
+    
+    <string-array name="drawer_options">
+        <item>Información de País</item>
+        <item>Acerca De</item>
+    </string-array>
+</resources>

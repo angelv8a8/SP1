@@ -10,6 +10,16 @@ import com.sp1.s2demo7.fragments.FlagFragment;
 
 public class FlagPagerAdapter extends FragmentPagerAdapter {
 
+	
+
+
+	int[] arrayFlags = new int[]
+			{
+				R.drawable.guatemala,
+				R.drawable.brazil,
+				R.drawable.mexico
+			};
+	
 	public FlagPagerAdapter(FragmentManager fm) {
 		super(fm);
 		// TODO Auto-generated constructor stub
@@ -17,24 +27,17 @@ public class FlagPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int arg0) {
-
-		int[] arrayFlags = new int[]
-				{
-					R.drawable.guatemala,
-					R.drawable.brazil,
-					R.drawable.mexico
-				};
 		
-		Fragment frag = new FlagFragment();
+		Fragment fragment = new FlagFragment();
 		Bundle args = new Bundle();
 		args.putInt(FlagFragment.RESOURCE, arrayFlags[arg0]);
-		frag.setArguments(args);
-		return frag;
+		fragment.setArguments(args);
+		return fragment;
 	}
 
 	@Override
 	public int getCount() {
-		return 3;
+		return arrayFlags.length;
 	}
 
 }
