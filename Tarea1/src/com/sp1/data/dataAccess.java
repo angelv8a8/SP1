@@ -3,6 +3,7 @@ package com.sp1.data;
 import java.util.ArrayList;
 
 import com.sp1.businessObjects.Tienda;
+import com.sp1.tarea1.R;
 
 public  class dataAccess {
 
@@ -39,5 +40,6 @@ public  class dataAccess {
 		}
 		return null;
 	}
+	
 	
 }

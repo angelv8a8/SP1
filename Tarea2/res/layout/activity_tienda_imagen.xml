@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".TiendaImagen" >
+    tools:context=".TiendaImagenActivity"
+    android:orientation="vertical" >
 
      <ImageView
                 android:contentDescription="@string/imagen_tienda_desc"
@@ -14,4 +15,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/tienda_default" />
-</RelativeLayout>
+     
+    
+    <fragment 
+        android:id="@+id/tiendaImagenComentarios"
+         android:name="com.sp1.tarea2.fragments.TiendaComentariosFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        
+        />
+     
+</LinearLayout>

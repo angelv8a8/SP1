@@ -1,14 +1,13 @@
 package com.sp1.tarea2;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -16,20 +15,24 @@ import android.widget.ImageView;
 import com.sp1.businessObjects.Tienda;
 import com.sp1.data.dataAccess;
 
-public class TiendaImagen extends Activity {
+public class TiendaImagenActivity extends FragmentActivity  {
 
 	
 	Tienda tienda;
 	
+	public Tienda getTienda()
+	{
+		return tienda;
+	}
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_tienda_imagen);
-		// Show the Up button in the action bar.
 		setupActionBar();
+		setContentView(R.layout.activity_tienda_imagen);
 	
 
-		int ID = getIntent().getIntExtra(DetalleTienda.TIENDA_ID, 0);
+		int ID = getIntent().getIntExtra(DetalleTiendaActivity.TIENDA_ID, 0);
 		
 		//int ID = getIntent().getStringExtra(DetalleTienda.TIENDA_ID).toString();
 		tienda = dataAccess.getTienda(ID);
@@ -51,18 +54,21 @@ public class TiendaImagen extends Activity {
 		}
 	}
 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.tienda_imagen, menu);
 		return true;
 	}
-
+	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item) 
+	{
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
+			//getActivity()
+			//NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_compartir_imagen:
 			if(tienda != null)

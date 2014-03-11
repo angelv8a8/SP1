@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,7 +20,7 @@ import com.sp1.s2demo10.R;
 import com.sp1.s2demo10.fragments.CountriesContentFragment;
 import com.sp1.s2demo10.fragments.FragmentAbout;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements OnClickListener{
 
 	private ListView drawerList;
 	private DrawerLayout drawerLayout;
@@ -73,6 +74,10 @@ public class MainActivity extends ActionBarActivity {
         
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+       
+        
+        
+
 		
 		FragmentManager manager = getSupportFragmentManager();
 	        manager.beginTransaction()
@@ -124,8 +129,8 @@ public class MainActivity extends ActionBarActivity {
 		drawerToggle.onConfigurationChanged(newConfig);
 	}
 	
-	public boolean onItemOptionsSelceted(MenuItem item)
-	{
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
 		if(item.getItemId()== android.R.id.home)
 		{
 			if(drawerLayout.isDrawerOpen(drawerList))
@@ -139,7 +144,7 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return true;
 	}
-
+	
 	class DrawerItemClickListener implements ListView.OnItemClickListener {
 
 		@Override
@@ -150,6 +155,12 @@ public class MainActivity extends ActionBarActivity {
 
 		}
 
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

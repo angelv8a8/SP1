@@ -1,65 +1,89 @@
 package com.sp1.tarea2;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
-import com.sp1.businessObjects.Tienda;
-import com.sp1.data.dataAccess;
+import com.sp1.tarea2.fragments.ComunidadFragment;
+import com.sp1.tarea2.fragments.ImagenesFragment;
+import com.sp1.tarea2.fragments.TiendasListAndMapFragment;
 
-public class MainActivity extends  ListActivity implements OnItemClickListener{
+public class MainActivity extends  ActionBarActivity implements OnItemClickListener{
 
+	private ListView drawerList;
+	private DrawerLayout drawerLayout;
+
+	private String[] drawerOptions;
 	
-	private final String NOMBRE = "nombre";
-	private final String ID = "id";
-	private final String DIRECCION = "direccion";
-	List<HashMap<String, String>> tiendas = new ArrayList<HashMap<String, String>> ();
-		
+	private ActionBarDrawerToggle drawerToggle;
+	
+	private Fragment[] fragments = new Fragment[]{
+		new TiendasListAndMapFragment(),
+		new ImagenesFragment(),
+		new ComunidadFragment()
+	};
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		drawerList = (ListView) findViewById(R.id.leftDrawer);
+		drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+		drawerOptions = getResources().getStringArray(R.array.drawer_options);
+
+		drawerList.setAdapter(new ArrayAdapter<String>(this,
+				R.layout.drawer_list_item, drawerOptions));
+
+		drawerList.setItemChecked(0, true);
+		drawerList.setOnItemClickListener(new DrawerItemClickListener());
 		
-		SimpleAdapter adapter = new SimpleAdapter(this, tiendas, 
-				android.R.layout.simple_expandable_list_item_2 , 
-				new String[]{NOMBRE,DIRECCION}, 
-				new int[]{android.R.id.text1, android.R.id.text2}
-		);
-		setListAdapter(adapter);
-		
-		List<Tienda> tiendasLista = dataAccess.getTinedas();
-		
-		for (Tienda laTienda : tiendasLista) {
+		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, 
+												R.drawable.ic_drawer	,
+												R.string.drawer_open,
+												R.string.drawer_close
+												)
+		{
+			@Override
+			public void onDrawerClosed(View drawerView) {
+				ActivityCompat.invalidateOptionsMenu(MainActivity.this);
+			}
 			
-			HashMap<String,String> aux= new HashMap<String,String>();
-			
-			aux.put(NOMBRE, laTienda.getNombre());
-			aux.put(DIRECCION, String.valueOf(laTienda.getDireccion()));
-			aux.put(ID, String.valueOf(laTienda.getID()));
-			
-			tiendas.add(aux);
-			
-			
-		}
+			@Override
+			public void onDrawerOpened(View drawerView) {
+				ActivityCompat.invalidateOptionsMenu(MainActivity.this);
+			}
+		};
 		
-		SimpleAdapter adapter2 = (SimpleAdapter)getListAdapter();
-		adapter2.notifyDataSetChanged();
+		drawerLayout.setDrawerListener(drawerToggle);
 		
-		ListView lv = (ListView)findViewById(android.R.id.list);
-		lv.setOnItemClickListener(listListener);
-		
-		
+		ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setTitle(drawerOptions[0]);
+        
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+       		
+		FragmentManager manager = getSupportFragmentManager();
+	        manager.beginTransaction()
+	        	    .add(R.id.contentFrame, fragments[0])
+	        		.add(R.id.contentFrame, fragments[1])
+	        		.add(R.id.contentFrame, fragments[2])
+	        		.hide(fragments[1]).hide(fragments[2])
+	        	    .commit();
 		
 	}
 
@@ -67,28 +91,9 @@ public class MainActivity extends  ListActivity implements OnItemClickListener{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		
-		
 		return true;
 		
 	}
-
-	OnItemClickListener listListener = new OnItemClickListener() {
-
-		@Override
-		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3) {
-		
-			HashMap<String,String>  tienda = tiendas.get(arg2);
-			
-			Intent intent = null;
-			intent = new Intent(getApplicationContext(), DetalleTienda.class);
-			//Log.i(TAG, "TEXTO:" + inputQuery.getText().toString());
-			intent.putExtra(DetalleTienda.TIENDA_ID, tienda.get(ID));
-			startActivity(intent);
-			
-		}
-	};
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -97,6 +102,65 @@ public class MainActivity extends  ListActivity implements OnItemClickListener{
 	}
 	
 
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
+
+	public void setContent(int pos) {
+		
+		ActionBar actionBar = getSupportActionBar(); 
+		actionBar.setTitle(drawerOptions[pos]);
+		
+		FragmentManager fm = getSupportFragmentManager();
+		
+		FragmentTransaction ft = fm.beginTransaction();
+		
+		Fragment toHide = null;
+		Fragment toShow = null;
+		switch (pos) {
+			case 0:
+				ft.show( fragments[0]);
+				ft.hide(fragments[1]);
+				ft.hide(fragments[2]);
+				actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+				break;
+			case 1:
+				ft.hide( fragments[0]);
+				ft.show(fragments[1]);
+				ft.hide(fragments[2]);
+				actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+				break;
+				
+			case 2:
+				ft.hide( fragments[0]);
+				ft.hide(fragments[1]);
+				ft.show(fragments[2]);
+				actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+				break;
+		}
+		
+		
+		ft.commit();
+		drawerList.setItemChecked(pos, true);
+		drawerLayout.closeDrawer(drawerList);
+	}
+	
+	
+
+	class DrawerItemClickListener implements ListView.OnItemClickListener {
+
+		@Override
+		public void onItemClick(AdapterView<?> adapter, View view, int pos,
+				long arg3) {
+
+			setContent(pos);
+
+		}
+
+	}
+
+		
 }

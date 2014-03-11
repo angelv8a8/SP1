@@ -3,6 +3,7 @@ package com.sp1.data;
 import java.util.ArrayList;
 
 import com.sp1.businessObjects.Tienda;
+import com.sp1.tarea2.R;
 
 public  class dataAccess {
 
@@ -39,5 +40,24 @@ public  class dataAccess {
 		}
 		return null;
 	}
+	
+	
+
+	
+	public static int[] getTiendasImagesIds()
+	{
+		int[] arrayImages = new int[]
+				{
+					R.drawable.tienda_1 ,
+					R.drawable.tienda_2,
+					R.drawable.tienda_3,
+					R.drawable.tienda_4,
+					R.drawable.tienda_5
+				};
+		
+		return arrayImages; 
+	}
+	
+	
 	
 }

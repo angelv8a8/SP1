@@ -20,9 +20,19 @@
     <string name="detalle_tienda_agregar_btn">+</string>
     <string name="msg_share">Te comparto el link de la tienda %1$s . Visita  %2$s</string>
     <string name="title_activity_tienda_imagen">TiendaImagen</string>
-    
     <string name="detalle_tienda_ver_imagen">Ver Imagen</string>
-    
-    
+
+    <string-array name="drawer_options">
+        <item name="imagenes">Tiendas</item>
+        <item name="tiendas">Imagenes</item>
+        <item name="tiendas">Comunidad</item>
+    </string-array>
+
+    <string name="drawer_open">Abrir</string>
+    <string name="drawer_close">Cerrar</string>
+    <string name="mapa">Aquí va el mapa</string>
+    <string name="title_fragment_list">Tiendas</string>
+    <string name="title_fragment_map">Mapa</string>
+    <string name="title_activity_test">Test</string>
 
 </resources>

@@ -1,12 +1,12 @@
 package com.sp1.s2demo10.fragments;
 
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.ActionBar.TabListener;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.Tab;
-import android.support.v7.app.ActionBar.TabListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +85,24 @@ public class CountriesContentFragment extends Fragment implements TabListener {
 
 	public void setContent(int tab) {		
 
+	}
+
+	@Override
+	public void onTabReselected(Tab arg0, android.app.FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabSelected(Tab arg0, android.app.FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabUnselected(Tab arg0, android.app.FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -18,22 +18,19 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.sp1.tarea2.DetalleTienda"
+        
+         <activity
+            android:name="com.sp1.tarea2.DetalleTiendaActivity"
             android:label="@string/title_activity_detalle_tienda"
             android:parentActivityName="com.sp1.tarea2.MainActivity" >
         </activity>
-        <activity
-            android:name="com.sp1.tarea2.TiendaImagen"
-            android:label="@string/title_activity_tienda_imagen"
-            android:parentActivityName="com.sp1.tarea2.DetalleTienda" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sp1.tarea2.DetalleTienda" />
+         <activity
+            android:name="com.sp1.tarea2.TiendaImagenActivity"
+            android:label="@string/title_activity_detalle_tienda"
+            android:parentActivityName="com.sp1.tarea2.DetalleTiendaActivity" >
         </activity>
     </application>
 
